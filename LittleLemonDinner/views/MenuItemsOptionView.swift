@@ -31,12 +31,17 @@ struct MenuItemsOptionView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color.clear)) {
                         ForEach(Menu.allCases, id: \.self){item in
-                            Text(item.rawValue)
-                                .onTapGesture {
-                                    menuItemViewModel.selectSortPreference(sortBy: item)
-                                    dismiss()
-                                    
+                            
+                            HStack {
+                                Text(item.rawValue)
+                                    .onTapGesture {
+                                        menuItemViewModel.selectSortPreference(sortBy: item)
+                                        dismiss()
+                                        
                                 }
+                                
+                                Image(systemName: menuItemViewModel.sortBy == item ? "checkmark" : "")
+                            }
                         }
                         
                     }
